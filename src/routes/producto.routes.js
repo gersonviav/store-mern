@@ -32,6 +32,16 @@ router.put('/producto/:id', async(req,res)=>{
     res.json({status:'Usuario update'})
 
 });
+router.get('/producto/por/:categoria', async(req,res)=>{
+  const {categoria} =req.params;
+  console.log("object")
+  console.log(categoria)
+  const producto = await Producto.find({categoria});
+  //MyModel.find({ name: 'john', age: { $gte: 18 }});
+ 
+  res.json(producto)
+ 
+});
 router.delete('/producto/:id', async(req,res)=>{
   const {id} =req.params;
   await Producto.findByIdAndRemove(id)
