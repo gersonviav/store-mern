@@ -40,7 +40,7 @@ router.get('/producto/por/:categoria', async(req,res)=>{
   //MyModel.find({ name: 'john', age: { $gte: 18 }});
  
   res.json(producto)
- 
+  
 });
 router.delete('/producto/:id', async(req,res)=>{
   const {id} =req.params;
