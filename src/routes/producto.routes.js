@@ -36,7 +36,8 @@ router.get('/producto/por/:categoria', async(req,res)=>{
   const {categoria} =req.params;
   console.log("object")
   console.log(categoria)
-  const producto = await Producto.find({categoria});
+  const producto = await Producto.find({categoria}).populate('categoria', 'descripcion')
+  .exec();
   //MyModel.find({ name: 'john', age: { $gte: 18 }});
  
   res.json(producto)

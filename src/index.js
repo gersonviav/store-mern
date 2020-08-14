@@ -27,9 +27,11 @@ app.use('/api/tienda',require('./routes/imagenes.routes'));
 
 app.use('/api/tienda',require('./routes/upload.routes'));
 
-
+ 
 app.use('/api/tienda', require('./routes/carditem.routes'));
 app.use('/api/tienda', require('./routes/login.routes'));
+app.use('/api/tienda', require('./routes/order.routes'));
+
 // Static Files
 app.use(express.static(path.join(__dirname, 'public')));;
 
