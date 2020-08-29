@@ -7,15 +7,15 @@ let rolesValidos = {
     message: '{VALUE} no es un rol valido'
 };
 let usuarioSchema =new Schema ({
-    nombre :{
+    firstName :{
         type:String ,
         required: [true,"el nombre es necesario"]
     } ,
-    edad :{ 
+    lastName :{ 
         type: String
 
     },
-    email :{
+    email :{ 
         type: String,
         unique : true,
         required :[true ,"el correo es necesario"]
@@ -47,7 +47,7 @@ usuarioSchema.methods.toJSON = function(){
     let user = this;
     let userObject = user.toObject();
     delete userObject.password;
-    return userObject;
+    return userObject; 
 }
 usuarioSchema.plugin(uniqueValidator,{message:'{PATH} debe de ser unico'})
 module.exports=mongoose.model('Usuario',usuarioSchema)

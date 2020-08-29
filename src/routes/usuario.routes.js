@@ -11,7 +11,7 @@ app.get('/usuario',verificaToken , (req, res) =>{
     let limite= req.query.limite || 5;
     limite = Number(limite);
 
-    Usuario.find({estado : true},'nombre email role estado google img')
+    Usuario.find({estado : true},'firstName email role estado google img')
             .skip(desde)
             .limit(limite)
             .exec((err,usuarios)=>{
@@ -37,8 +37,8 @@ app.post('/usuario', function(req, res) {
 
     let body = req.body;
     let usuario= new Usuario({
-        nombre: body.nombre,
-        edad:body.edad,
+        firstName: body.firstName,
+        lastName:body.lastName,
         email: body.email,
         password : bcrypt.hashSync(body.password,10),
         role : body.role
@@ -66,7 +66,7 @@ app.post('/usuario', function(req, res) {
 app.put('/usuario/:id',[verificaToken,verificaAdmin_Role], function(req, res) {
 
     let id = req.params.id;
-    let body = _.pick(req.body,['nombre','email','img','role','estado']);
+    let body = _.pick(req.body,['firstName','email','img','role','estado']);
     Usuario.findByIdAndUpdate(id ,body,{new : true ,runValidators:true} , (err,usuarioDB)=>{
         if (err) {
             return res.status(400).json({

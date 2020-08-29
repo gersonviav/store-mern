@@ -35,12 +35,18 @@ Usuario.findOne({email : body.email} , (err,usuarioDB)=>{
    let token = jwt.sign({
        usuario  : usuarioDB 
    }, 'este es el seed desarrollo ',{expiresIn: '48h'})
-   res.json({
-       ok:true ,
-       Usuario:usuarioDB,
-       token:token
-   });
-    
+ 
+   res.status(200).json({
+    message: {
+        user: {
+            userId: usuarioDB._id,
+            firstName: usuarioDB.firstName,
+            lastName: usuarioDB.lastName,
+            email: usuarioDB.email
+        },
+        token: token
+    }
+})
 });
   
    
